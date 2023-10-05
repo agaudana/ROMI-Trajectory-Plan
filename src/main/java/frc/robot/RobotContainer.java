@@ -46,7 +46,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     JoystickButton forward5Inch = new JoystickButton(driveController, 1);
 
-    forward5Inch.whenPressed(driveDistance);
+    forward5Inch.whenReleased(driveDistance);
   }
 
   private void setDefaultCommands() {
