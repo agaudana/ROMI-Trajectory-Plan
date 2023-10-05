@@ -35,11 +35,15 @@ public class DriveDistance extends CommandBase {
   public void end(boolean interrupted) {
     m_Drivetrain.arcadeDrive(0, 0);
   }
-
-
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    RomiDrivetrain DistanceCheck = new RomiDrivetrain();
+    if((DistanceCheck.getLeftDistanceInch()+DistanceCheck.getRightDistanceInch())/2 == 5) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 }
