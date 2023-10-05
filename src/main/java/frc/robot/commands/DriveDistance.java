@@ -38,8 +38,7 @@ public class DriveDistance extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    RomiDrivetrain DistanceCheck = new RomiDrivetrain();
-    if((DistanceCheck.getLeftDistanceInch()+DistanceCheck.getRightDistanceInch())/2 == 5) {
+    if((m_Drivetrain.getLeftDistanceInch()+m_Drivetrain.getRightDistanceInch())/2 == 5) {
       return true;
     }
     else {
