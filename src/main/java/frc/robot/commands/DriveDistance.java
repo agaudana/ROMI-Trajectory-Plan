@@ -22,7 +22,9 @@ public class DriveDistance extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+   m_Drivetrain.resetEncoders();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -35,10 +37,12 @@ public class DriveDistance extends CommandBase {
   public void end(boolean interrupted) {
     m_Drivetrain.arcadeDrive(0, 0);
   }
+  
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if((m_Drivetrain.getLeftDistanceInch()+m_Drivetrain.getRightDistanceInch())/2 == 5) {
+    boolean is5inches = (m_Drivetrain.getLeftDistanceInch()+m_Drivetrain.getRightDistanceInch())/2 >= 5;
+    if(is5inches) {
       return true;
     }
     else {

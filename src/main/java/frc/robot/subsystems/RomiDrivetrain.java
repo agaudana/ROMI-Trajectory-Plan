@@ -34,7 +34,7 @@ public class RomiDrivetrain extends SubsystemBase {
     resetEncoders();
 
     // Invert right side since motor is flipped
-    m_leftMotor.setInverted(true);
+    m_rightMotor.setInverted(true);
   }
 
   // A COMMENT!
@@ -49,11 +49,13 @@ public class RomiDrivetrain extends SubsystemBase {
   }
 
   public double getLeftDistanceInch() {
-    return m_leftEncoder.getDistance();
+    double temp = m_leftEncoder.getDistance();
+    return temp;
   }
 
   public double getRightDistanceInch() {
-    return m_rightEncoder.getDistance();
+    double temp2 = m_rightEncoder.getDistance();
+    return temp2;
   }
 
   @Override
