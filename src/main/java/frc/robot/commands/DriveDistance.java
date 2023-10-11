@@ -41,8 +41,7 @@ public class DriveDistance extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    boolean is5inches = (m_Drivetrain.getLeftDistanceInch()+m_Drivetrain.getRightDistanceInch())/2 >= 5;
-    if(is5inches) {
+    if((m_Drivetrain.getLeftDistanceInch()+m_Drivetrain.getRightDistanceInch())/2 >= 5) {
       return true;
     }
     else {

@@ -50,12 +50,11 @@ public class RomiDrivetrain extends SubsystemBase {
 
   public double getLeftDistanceInch() {
     double temp = m_leftEncoder.getDistance();
-    return temp;
+    return m_leftEncoder.getDistance();
   }
 
   public double getRightDistanceInch() {
-    double temp2 = m_rightEncoder.getDistance();
-    return temp2;
+    return m_rightEncoder.getDistance();
   }
 
   @Override
