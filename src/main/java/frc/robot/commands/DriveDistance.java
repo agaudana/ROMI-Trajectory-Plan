@@ -12,11 +12,14 @@ public class DriveDistance extends CommandBase {
   RomiDrivetrain m_Drivetrain;
   double speed;
   double turn;
-  public DriveDistance(RomiDrivetrain drivetrain) {
+  double distance;
+
+  public DriveDistance(RomiDrivetrain drivetrain, double distance) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_Drivetrain = drivetrain;
     speed = 0.5;
     turn = 0;
+    this.distance = distance;
     addRequirements(drivetrain);
   }
 
@@ -41,7 +44,7 @@ public class DriveDistance extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if((m_Drivetrain.getLeftDistanceInch()+m_Drivetrain.getRightDistanceInch())/2 >= 5) {
+    if((m_Drivetrain.getLeftDistanceInch()+m_Drivetrain.getRightDistanceInch())/2 >= distance) {
       return true;
     }
     else {

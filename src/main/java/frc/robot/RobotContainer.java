@@ -28,7 +28,10 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_romiDrivetrain);
 
-  private final DriveDistance driveDistance = new DriveDistance(m_romiDrivetrain);
+  private final DriveDistance driveDistance5 = new DriveDistance(m_romiDrivetrain, 5);
+
+  private final DriveDistance driveDistance12 = new DriveDistance(m_romiDrivetrain, 12);
+
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -44,9 +47,13 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    JoystickButton forward5Inch = new JoystickButton(driveController, 1);
+    JoystickButton forward5Inch = new JoystickButton(driveController, XboxController.Button.kA.value);
 
-    forward5Inch.whenReleased(driveDistance);
+    forward5Inch.whenReleased(driveDistance5);
+
+    JoystickButton forward12Inch = new JoystickButton(driveController, XboxController.Button.kB.value);
+
+    forward12Inch.whenReleased(driveDistance12);
   }
 
   private void setDefaultCommands() {
