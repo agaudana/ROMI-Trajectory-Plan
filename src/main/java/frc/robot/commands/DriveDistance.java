@@ -4,6 +4,8 @@
 
 package frc.robot.commands;
 
+import java.util.function.Supplier;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.RomiDrivetrain;
 
@@ -12,9 +14,9 @@ public class DriveDistance extends CommandBase {
   RomiDrivetrain m_Drivetrain;
   double speed;
   double turn;
-  double distance;
+  Supplier<Double> distance;
 
-  public DriveDistance(RomiDrivetrain drivetrain, double distance) {
+  public DriveDistance(RomiDrivetrain drivetrain, Supplier<Double> distance) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_Drivetrain = drivetrain;
     speed = 0.5;
@@ -44,7 +46,7 @@ public class DriveDistance extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if((m_Drivetrain.getLeftDistanceInch()+m_Drivetrain.getRightDistanceInch())/2 >= distance) {
+    if((m_Drivetrain.getLeftDistanceInch()+m_Drivetrain.getRightDistanceInch())/2 >= distance.get().doubleValue()) {
       return true;
     }
     else {

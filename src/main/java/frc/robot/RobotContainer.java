@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import java.util.function.Supplier;
+
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.DriveDistance;
@@ -11,6 +13,7 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.RomiDrivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -20,6 +23,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
+  double distance = 0;
+
   private final RomiDrivetrain m_romiDrivetrain = new RomiDrivetrain();
 
   private final XboxController driveController = new XboxController(0);
@@ -28,9 +33,7 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_romiDrivetrain);
 
-  private final DriveDistance driveDistance5 = new DriveDistance(m_romiDrivetrain, 5);
-
-  private final DriveDistance driveDistance12 = new DriveDistance(m_romiDrivetrain, 12);
+  private final DriveDistance driveDistance = new DriveDistance(m_romiDrivetrain, () -> SmartDashboard.getNumber("distance", distance));
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -47,13 +50,15 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    JoystickButton forward5Inch = new JoystickButton(driveController, XboxController.Button.kA.value);
+    SmartDashboard.putNumber("distance", distance);
 
-    forward5Inch.whenReleased(driveDistance5);
+    JoystickButton forward = new JoystickButton(driveController, XboxController.Button.kA.value);
 
-    JoystickButton forward12Inch = new JoystickButton(driveController, XboxController.Button.kB.value);
+    forward.whenReleased(driveDistance);
 
-    forward12Inch.whenReleased(driveDistance12);
+    /*JoystickButton forward12Inch = new JoystickButton(driveController, XboxController.Button.kB.value);
+
+    forward12Inch.whenReleased(driveDistance12);*/
   }
 
   private void setDefaultCommands() {

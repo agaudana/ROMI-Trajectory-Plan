@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class RomiDrivetrain extends SubsystemBase {
@@ -60,6 +61,8 @@ public class RomiDrivetrain extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("leftEncoderDist", m_leftEncoder.getDistance());
+    SmartDashboard.putNumber("rightEncoderDist", m_rightEncoder.getDistance());
   }
 
   @Override
